@@ -31,8 +31,8 @@ KeeperA::KeeperA(const KeeperA& other)
 	int cnt = 0;
 	this->Size = other.Size;
 
-	Aeroflot* current = nullptr;
-	Aeroflot* current1 = nullptr;
+	Price* current = nullptr;
+	Price* current1 = nullptr;
 	this->head = current;
 	filter = " ";
 
@@ -41,7 +41,7 @@ KeeperA::KeeperA(const KeeperA& other)
 	{
 		if (head == nullptr)
 		{
-			this->head = new Aeroflot(other.head->getdat());
+			this->head = new Price(other.head->getPrice());
 			this->tail = this->head;
 		}
 		else
@@ -54,7 +54,7 @@ KeeperA::KeeperA(const KeeperA& other)
 				current = current->pNext;
 				current1 = current1->pNext;
 			}
-			current1->pNext = new Aeroflot(current->pNext->getdat(), current1->pNext, current1);
+			current1->pNext = new Price(current->pNext->getPrice(), current1->pNext, current1);
 			this->tail = current1->pNext;
 		}
 	}
@@ -62,8 +62,8 @@ KeeperA::KeeperA(const KeeperA& other)
 
 void KeeperA::swap(int fir, int sec)
 {
-	Aeroflot* first = this->head;
-	Aeroflot* second = this->head;
+	Price* first = this->head;
+	Price* second = this->head;
 	int cntf = 0;
 	int cnts = 0;
 
@@ -86,19 +86,19 @@ void KeeperA::swap(int fir, int sec)
 		cnts++;
 	}
 
-	Aeroflot* temp = new Aeroflot("temp");
+	Price* temp = new Price("temp");
 
-	temp->setdest(first->getdest());
-	temp->setdat(first->getdat());
-	temp->settype(first->gettype());
+	temp->setName(first->getName());
+	temp->setPrice(first->getPrice());
+	temp->setShopName(first->getShopName());
 
-	first->setdest(second->getdest());
-	first->setdat(second->getdat());
-	first->settype(second->gettype());
+	first->setName(second->getName());
+	first->setPrice(second->getPrice());
+	first->setShopName(second->getShopName());
 
-	second->setdest(temp->getdest());
-	second->setdat(temp->getdat());
-	second->settype(temp->gettype());
+	second->setName(temp->getName());
+	second->setPrice(temp->getPrice());
+	second->setShopName(temp->getShopName());
 	
 	delete temp;
 }
@@ -108,8 +108,8 @@ void KeeperA::sort()
 	int i, j;
 	string first;
 	string second;
-	Aeroflot* fir = this->head;
-	Aeroflot* sec = fir->pNext;
+	Price* fir = this->head;
+	Price* sec = fir->pNext;
 	for (i = 0; i < Size - 1; i++)
 	{
 
@@ -119,8 +119,8 @@ void KeeperA::sort()
 		sec = fir->pNext;
 		for (j = 0; j < Size - i - 1; j++)
 		{
-			first = fir->getdest();
-			second = sec->getdest();
+			first = fir->getName();
+			second = sec->getName();
 
 			if ((first > second))
 				this->swap(j, j + 1);
@@ -135,7 +135,7 @@ void KeeperA::pop_front()
 	int si = this->Size;
 	if (si)//Фикс исключения 1
 	{
-		Aeroflot* temp = head;
+		Price* temp = head;
 		head = head->pNext;//Исключение 1: попытка чтения поля пустого элемента
 		delete temp;
 		Size--;
@@ -152,7 +152,7 @@ void KeeperA::pop_back()
 	int si = this->Size;
 	if (si)//Фикс исключения 2
 	{
-		Aeroflot* temp = tail;
+		Price* temp = tail;
 		tail = tail->pPrev;//Исключение 2: попытка чтения поля пустого элемента
 		if (si > 1)
 		{
@@ -190,8 +190,8 @@ void KeeperA::pop(int d)
 		this->pop_back();
 	else
 	{
-		Aeroflot* temp = this->head;
-		Aeroflot* tem1 = nullptr;
+		Price* temp = this->head;
+		Price* tem1 = nullptr;
 		while (i != d)
 		{
 			tem1 = temp;
@@ -211,68 +211,23 @@ void KeeperA::push_back(int data)
 {
 	if (head == nullptr)
 	{
-		head = new Aeroflot(data);
+		head = new Price(data);
 		tail = this->head;
 	}
 	else
 	{
-		Aeroflot* current = this->head;
+		Price* current = this->head;
 
 		while (current->pNext != nullptr)
 		{
 			current = current->pNext;
 		}
-		current->pNext = new Aeroflot(data, current->pNext, current);
+		current->pNext = new Price(data, current->pNext, current);
 		tail = current->pNext;
 	}
 	Size++;
 }
 
-//void KeeperA::push_front(int data)
-//{
-//	if (head == nullptr)
-//	{
-//		head = new Aeroflot(data);
-//		tail = this->head;
-//	}
-//	else
-//	{
-//		Aeroflot* current = this->head;
-//
-//		current->pPrev = new Aeroflot(data, current, current->pPrev);
-//		head = current->pPrev;
-//	}
-//	Size++;
-//}
-//
-//void KeeperA::push(int i, int d)
-//{
-//	int si = this->Size;
-//	int cnt = 0;
-//	if (i<0 || i> si)
-//	{
-//		cout << "Incorrect range!" << endl;
-//		Sleep(1000);
-//	}
-//	else if (i == 0)
-//		this->push_front(d);
-//	else if (i == si)
-//		this->push_back(d);
-//	else
-//	{
-//
-//		Aeroflot* current = this->head;
-//		while (cnt != i - 1)
-//		{
-//			current = current->pNext;
-//			cnt++;
-//		}
-//		Aeroflot* current1 = current->pNext;
-//		current->pNext = new Aeroflot(d, current->pNext, current);
-//		Size++;
-//	}
-//
-//}
 
 void KeeperA::clear()
 {
@@ -323,12 +278,12 @@ string KeeperA::operator[](const int index)
 {
 	int counter = 0;
 	string ret;
-	Aeroflot* current = this->head;
+	Price* current = this->head;
 	while (current != nullptr)
 	{
 		if (counter == index)
 		{
-			ret = current->getdest();
+			ret = current->getName();
 			return ret;
 		}
 		current = current->pNext;
@@ -343,26 +298,21 @@ void KeeperA::Show()
 		cout << "Currently showing all flights" << endl << endl;
 	else
 		cout << "Currently showing flights serviced by the following plane type: "<< filter << endl << endl;
-	Aeroflot* current = this->head;
-	string cur_typ;
+	Price* current = this->head;
+	string cur_name;
 	this->sort();
 	if (current != nullptr)
 	{
-		while (current->pNext != nullptr)
+		while (current != nullptr)
 		{
-			cur_typ = current->gettype();
-			if (filter != " " && cur_typ == filter)
+			cur_name = current->getName();
+			if (filter != " " && cur_name == filter)
 				cout<<*current;
 			else if (filter == " ")
 				cout << *current;
 			
 			current = current->pNext;
 		}
-		cur_typ = current->gettype();
-		if (filter != " " && cur_typ == filter)
-			cout << *current;
-		else if (filter == " ")
-			cout << *current;
 	}
 	else
 		cout << "The list is empty!!!" << endl;

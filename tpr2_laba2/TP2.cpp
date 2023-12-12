@@ -17,12 +17,6 @@ void exp();
 
 int main(void)
 {
-	/*string fir = "bbbbbbbbbbb";
-	string sec = "baaaaaaaaaa";
-	if (fir > sec)
-		cout << fir;
-	else
-		cout << sec;*/
 	menu();
 	return 0;
 }
@@ -35,8 +29,8 @@ void menu()
 	string filt;
 	cls();
 	KeeperA bob(0);
-	KeeperA aero(bob);
-	KeeperT texo(3);
+	KeeperA price(bob);
+	KeeperT texo;
 	filt = " ";
 	k = 0;
 	men();
@@ -47,13 +41,11 @@ void menu()
 		cls();
 		switch (choice)
 		{
-		case 1: //////////////////////////////Open aeroflot
+		case 1: //////////////////////////////Open price
 		{
-			aero.push_back();
 			k = 0;
 			cls();
 			disp();
-			aero.Show();
 			while (k != 5)
 			{
 				cin >> k;
@@ -62,37 +54,37 @@ void menu()
 				case 1:////Add element
 					cls();
 					disp();
-					aero.push_back();
+					price.push_back();
 					cls();
 					disp();
-					aero.Show();
+					price.Show();
 					break;
 				case 2://///Remove element
 					cls();
 					disp();
-					cout << "What flight you'd like to remove?" << endl;
+					cout << "What product you'd like to remove?" << endl;
 					cin >> d;
-					aero.pop(d);
+					price.pop(d);
 					cls();
 					disp();
-					aero.Show();
+					price.Show();
 					break;
 
-				case 3:///Show all flights
+				case 3:///Show all products
 					cls();
 					disp();
-					aero.setfilt();
-					aero.Show();
+					price.setfilt();
+					price.Show();
 					break;
-				case 4:///Show flights flown by this type of plane
+				case 4:///Show defined producs
 					cls();
 					disp();
-					cout << "By what plane type would you like to filter the flights?" << endl;
+					cout << "By what product would you like to filter the flights?" << endl;
 					cin >> filt;
-					aero.setfilt(filt);
+					price.setfilt(filt);
 					cls();
 					disp();
-					aero.Show();
+					price.Show();
 					break;
 				case 5:///To main menu
 					cls();

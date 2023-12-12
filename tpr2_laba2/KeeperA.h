@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Aeroflot.h"
+#include "Price.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -18,9 +18,7 @@ public:
 	void pop_front();
 	void pop_back();
 	void pop(int d);
-	void push_back(int data = rand() % 1000);
-	//void push_front(int data = rand() % 1000);
-	//void push(int i = 0, int d = rand() % 1000);
+	void push_back(int price = rand() % 1000);
 	void clear();
 	void setfilt(string filter = " ");
 	int GetSize();
@@ -32,6 +30,6 @@ public:
 private:
 	int Size;
 	string filter;
-	Aeroflot* head;
-	Aeroflot* tail;
+	Price* head;
+	Price* tail;
 };

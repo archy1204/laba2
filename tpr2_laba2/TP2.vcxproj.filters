@@ -24,7 +24,7 @@
     <ClCompile Include="KeeperT.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Aeroflot.cpp">
+    <ClCompile Include="Price.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Senten.cpp">
@@ -38,7 +38,7 @@
     <ClInclude Include="KeeperT.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Aeroflot.h">
+    <ClInclude Include="Price.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Senten.h">

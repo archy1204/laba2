@@ -16,7 +16,7 @@ public:
 
 	string gettext();
 
-	Senten(int data = int(), Senten* pNext = nullptr, Senten* pPrev = nullptr);
+	Senten(string text = "", Senten* pNext = nullptr, Senten* pPrev = nullptr);
 private:
 	int data;
 	string text;

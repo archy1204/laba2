@@ -4,30 +4,30 @@
 #include <string>
 using namespace std;
 
-class Aeroflot
+class Price
 {
 public:
-	Aeroflot* pNext;
-	Aeroflot* pPrev;
-	Aeroflot(int data = int(), Aeroflot* pNext = nullptr, Aeroflot* pPrev = nullptr);
-	Aeroflot(string temp);
+	Price* pNext;
+	Price* pPrev;
+	Price(int price = int(), Price* pNext = nullptr, Price* pPrev = nullptr);
+	Price(string temp);
 
-	void setdest(string dest="a - b");
-	void setdat(int dat = 0);
-	void settype(string typ="plane");
+	void setName(string name="Unnamed product");
+	void setPrice(int price = 0);
+	void setShopName(string shopName="Unnamed shop");
 
-	string getdest();
-	int getdat();
-	string gettype();
+	string getName();
+	int getPrice();
+	string getShopName();
 
 	void display();
 
 
-	friend std::istream& operator>>(std::istream& input, Aeroflot& aero);
-	friend std::ostream& operator<<(std::ostream& output, const Aeroflot& aero);
+	friend std::istream& operator>>(std::istream& input, Price& product);
+	friend std::ostream& operator<<(std::ostream& output, const Price& aero);
 
 private:
-	string destin;
-	int data;
-	string type;
+	string name;
+	int price;
+	string shopName;
 };

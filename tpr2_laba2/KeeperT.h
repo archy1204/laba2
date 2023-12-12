@@ -12,7 +12,7 @@ public:
 	explicit KeeperT(int siz);
 	~KeeperT();
 	void pop_front();
-	void push_back(int data = rand() % 10);
+	void push_back(string text);
 	void clear();
 	int GetSize();
 	int request_strt();

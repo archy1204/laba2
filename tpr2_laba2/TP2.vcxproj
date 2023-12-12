@@ -127,14 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Aeroflot.cpp" />
+    <ClCompile Include="Price.cpp" />
     <ClCompile Include="KeeperA.cpp" />
     <ClCompile Include="KeeperT.cpp" />
     <ClCompile Include="Senten.cpp" />
     <ClCompile Include="TP2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Aeroflot.h" />
+    <ClInclude Include="Price.h" />
     <ClInclude Include="KeeperA.h" />
     <ClInclude Include="KeeperT.h" />
     <ClInclude Include="Senten.h" />

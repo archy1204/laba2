@@ -35,66 +35,55 @@ public:
 	}
 }anyof;
 
-KeeperT::KeeperT()
+KeeperT::KeeperT(int siz)
 {
-	Size = 0;
+	Size = siz;
 	head = nullptr;
 	tail = nullptr;
 }
 
-KeeperT::KeeperT(int siz)
-{
+KeeperT::KeeperT() {
 	Size = 0;
 	head = nullptr;
 	tail = nullptr;
-	Spawn(siz);
+	// Spawn(siz);
 	int phase = 0;
 
 	ifstream fin("1.txt");
 	string str = "";
 	char separator[] = { '.', '?', '!', '…', '\0' };
-	char first_let[] = {'A', 'B','C','D' ,'E' ,'F' ,'G' ,'H' ,'I' ,'J' ,'K' ,'L' ,'M' ,'N' ,'O' ,'P' ,'Q' ,'R' ,'S' ,'T' ,'U' ,'V' ,'W' ,'X' ,'Y' ,'Z' };
+	char first_let[] = { 'A', 'B','C','D' ,'E' ,'F' ,'G' ,'H' ,'I' ,'J' ,'K' ,'L' ,'M' ,'N' ,'O' ,'P' ,'Q' ,'R' ,'S' ,'T' ,'U' ,'V' ,'W' ,'X' ,'Y' ,'Z' };
 	char symbol;
-	Senten* current = this->head;
+	char predSymbol = 'a';
+	bool isFirst = true;
+	bool newSent = true;
+	Senten* pred;
+	Senten* current = nullptr;
 
-	while (fin.get(symbol))
-	{
-		switch (phase)
-		{
-			case 0://Поиск заглавной
-				if (anyof(first_let, symbol))
-				{
-					str += symbol;
-					phase = 1;
-				}
-				break;
-			case 1://Запись предложения
-				str += symbol;
-				if (anyof(separator, symbol))
-				{
-					if (current == nullptr)
-					{
-						phase = 99;
-						break;
-					}
-					phase = 2;
-				}
-				break;
-			case 2:
-				str += symbol;
-				if (symbol == 32)
-				{
-					current->settext(str);
-					current = current->pNext;
-					str = "";
-					phase = 0;
-				}
-				break;
-			case 99:
-				return;
+
+	while (fin.get(symbol)) {
+		if (newSent && predSymbol == 32 && anyof(first_let, symbol)) {
+			push_back(str);
+			/*pred = current;
+			current == new Senten(str, nullptr, pred);
+			if (pred != nullptr)
+				pred->pNext = current;*/
+			str = "";
+			/*if (isFirst) {
+				this->head = current;
+				isFirst = false;
+			}*/
+			newSent = false;
 		}
-		
+
+		if (anyof(separator, symbol))
+			newSent = true;
+
+		str += symbol;
+		predSymbol = symbol;
+
 	}
+	push_back(str);
 }
 
 KeeperT::~KeeperT()
@@ -120,11 +109,12 @@ void KeeperT::pop_front()
 		Sleep(1000);
 	}
 }
-void KeeperT::push_back(int data)
+
+void KeeperT::push_back(string text)
 {
 	if (head == nullptr)
 	{
-		head = new Senten(data);
+		head = new Senten(text);
 		tail = this->head;
 	}
 	else
@@ -135,7 +125,7 @@ void KeeperT::push_back(int data)
 		{
 			current = current->pNext;
 		}
-		current->pNext = new Senten(data, current->pNext, current);
+		current->pNext = new Senten(text, current->pNext, current);
 		tail = current->pNext;
 	}
 	Size++;
@@ -163,24 +153,6 @@ int KeeperT::request_strt()
 	return strt;
 }
 
-void KeeperT::Spawn()
-{
-	int strt = request_strt();
-	for (int i = 0; i < strt; i++)
-	{
-		push_back(rand() % 10);
-	}
-}
-
-void KeeperT::Spawn(int siz)
-{
-	int strt = siz;
-	for (int i = 0; i < strt; i++)
-	{
-		push_back(rand() % 10);
-	}
-}
-
 string KeeperT::operator[](const int index)
 {
 	int counter = 0;
@@ -201,15 +173,13 @@ string KeeperT::operator[](const int index)
 void KeeperT::Show()
 {
 	Senten* current = this->tail;
-	cout << endl;
-	if (current->gettext()!="b")
-		cout <<current->gettext() << endl;//3
-	current = current->pPrev;
-	if (current->gettext() != "b")
-		cout << current->gettext() << endl;//2
-	current = current->pPrev;
-	if (current->gettext() != "b")
-		cout << current->gettext() << endl;//1
-	else
-		cout << "No sentences were found";
+	if (current->gettext() == "") {
+		cout << "\nNo sentences were found";
+		return;
+	}
+
+	while (current != nullptr) {
+		cout << current->gettext() << endl;
+		current = current->pPrev;
+	}
 }

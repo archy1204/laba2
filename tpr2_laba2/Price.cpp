@@ -1,87 +1,79 @@
-#include "Aeroflot.h"
+#include "Price.h"
 
 //#include <iostream>
 //#include <fstream>
 
-Aeroflot::Aeroflot(int data, Aeroflot* pNext, Aeroflot* pPrev)
+Price::Price(int price, Price* pNext, Price* pPrev)
 {
-	this->data = data;
+	this->price = price;
 	this->pNext = pNext;
 	this->pPrev = pPrev;
-	setdest();
-	settype();
-	//Aeroflot* temp = this;
 	cin >> *this;
 }
 
-Aeroflot::Aeroflot(string temp)
+Price::Price(string temp)
 {
-	this->data = data;
+	this->price = price;         // ???
 	this->pNext = pNext;
 	this->pPrev = pPrev;
-	setdest();
-	settype();
+	setName();
+	setShopName();
 }
 
-void Aeroflot::setdest(string dest)
+void Price::setName(string name)
 {
-	this->destin = dest;
+	this->name = name;
 }
 
-void Aeroflot::setdat(int dat)
+void Price::setPrice(int price)
 {
-	this->data = dat;
+	this->price = price;
 }
 
-void Aeroflot::settype(string typ)
+void Price::setShopName(string shopName)
 {
-	this->type = typ;
+	this->shopName = shopName;
 }
 
-string Aeroflot::getdest()
+string Price::getName()
 {
-	return this->destin;
+	return this->name;
 }
 
-int Aeroflot::getdat()
+int Price::getPrice()
 {
-	return this->data;
+	return this->price;
 }
 
-string Aeroflot::gettype()
+string Price::getShopName()
 {
-	return this->type;
+	return this->shopName;
 }
 
-void Aeroflot::display()
+void Price::display()
 {
-	cout << destin << endl << data << endl << type << endl << endl;
+	cout << name << endl << price << endl << shopName << endl << endl;
 }
 
-istream& operator>>(std::istream& input, Aeroflot& aero)
+istream& operator>>(std::istream& input, Price& product)
 {
 	cin.ignore(32767, '\n');
-	string depart;
-	string destin;
-	cout << "\nPlace of departure: ";
-	getline(input, depart);
-	cout << "\nDestination: ";
-	getline(input, destin);
-	aero.setdest(depart + " - " + destin);
 
-	cout << "\nPlane type: ";
-	getline(input, aero.type);
+	cout << "\nName of the product: ";
+	getline(input, product.name);
+	
 
-	/*cout << "\nNumber of the flight: ";
-	input >> aero.data;*/
+	/*cout << "\nPrice of the product: ";
+	input >> product.price;*/
 
-	//input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	cout << "\Name of the shop of the product: ";
+	getline(input, product.shopName);
 
 	return input;
 }
 
-ostream& operator<<(ostream& output, const Aeroflot& aero)
+ostream& operator<<(ostream& output, const Price& aero)
 {
-	output << "Destination: " << aero.destin << endl<<"Flight number: "<<aero.data << endl <<"Plane type: "<< aero.type << endl << endl;
+	output << "Name: " << aero.name << endl<<"Price: "<<aero.price << endl <<"Shop: "<< aero.shopName << endl << endl;
 	return output;
 }

@@ -15,10 +15,9 @@ string Senten::gettext()
 	return this->text;
 }
 
-Senten::Senten(int data, Senten* pNext, Senten* pPrev)
+Senten::Senten(string text, Senten* pNext, Senten* pPrev)
 {
-	this->data = data;
+	this->text = text;
 	this->pNext = pNext;
 	this->pPrev = pPrev;
-	this->text = "b";
 }
