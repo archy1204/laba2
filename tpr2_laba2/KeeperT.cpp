@@ -37,12 +37,21 @@ public:
 
 KeeperT::KeeperT(int siz)
 {
+	cout << "\nKeeperT constructor";
 	Size = siz;
 	head = nullptr;
 	tail = nullptr;
 }
 
+KeeperT::KeeperT(KeeperT& keeper)
+{
+	cout << "\nKeeperT copy constructor";
+	this->head = keeper.head;
+	this->tail = keeper.tail;
+}
+
 KeeperT::KeeperT() {
+	cout << "\nKeeperT constructor with parametrs";
 	Size = 0;
 	head = nullptr;
 	tail = nullptr;
@@ -64,15 +73,7 @@ KeeperT::KeeperT() {
 	while (fin.get(symbol)) {
 		if (newSent && predSymbol == 32 && anyof(first_let, symbol)) {
 			push_back(str);
-			/*pred = current;
-			current == new Senten(str, nullptr, pred);
-			if (pred != nullptr)
-				pred->pNext = current;*/
 			str = "";
-			/*if (isFirst) {
-				this->head = current;
-				isFirst = false;
-			}*/
 			newSent = false;
 		}
 
@@ -89,7 +90,7 @@ KeeperT::KeeperT() {
 KeeperT::~KeeperT()
 {
 	clear();
-	/*cout << "111" << endl;*/
+	cout << "\nKeeperT destructor";
 }
 
 

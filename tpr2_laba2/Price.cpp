@@ -5,6 +5,7 @@
 
 Price::Price(int price, Price* pNext, Price* pPrev)
 {
+	cout << "\nPrice constructor with parametrs";
 	this->price = price;
 	this->pNext = pNext;
 	this->pPrev = pPrev;
@@ -13,13 +14,26 @@ Price::Price(int price, Price* pNext, Price* pPrev)
 
 Price::Price(string temp)
 {
-	this->price = price;         // ???
+	cout << "\nPrice constructor with parametrs";
+	this->price = price;         
 	this->pNext = pNext;
 	this->pPrev = pPrev;
 	setName();
 	setShopName();
 }
 
+Price::Price(Price& pr)
+{
+	cout << "\nPrice copy constructor";
+	this->price = pr.price;         
+	this->pNext = pr.pNext;
+	this->pPrev = pr.pPrev;
+}
+
+Price::Price()
+{
+	cout << "\nPrice constructor";
+}
 void Price::setName(string name)
 {
 	this->name = name;

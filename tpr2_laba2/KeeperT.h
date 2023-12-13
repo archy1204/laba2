@@ -10,6 +10,7 @@ class KeeperT
 public:
 	KeeperT();
 	explicit KeeperT(int siz);
+	KeeperT(KeeperT& keeper);
 	~KeeperT();
 	void pop_front();
 	void push_back(string text);

@@ -5,6 +5,7 @@
 
 KeeperA::KeeperA()
 {
+	cout << "\nKeeperA constructor";
 	Size = 0;
 	head = nullptr;
 	tail = nullptr;
@@ -13,6 +14,7 @@ KeeperA::KeeperA()
 
 KeeperA::KeeperA(int siz)
 {
+	cout << "\nKeeperA constructor with constructor";
 	Size = 0;
 	head = nullptr;
 	tail = nullptr;
@@ -22,12 +24,14 @@ KeeperA::KeeperA(int siz)
 
 KeeperA::~KeeperA()
 {
+	cout << "\nKeeperA destructor";
 	clear();
 	/*cout << "111" << endl;*/
 }
 
 KeeperA::KeeperA(const KeeperA& other)
 {
+	cout << "\nKeeperA copy constructor";
 	int cnt = 0;
 	this->Size = other.Size;
 

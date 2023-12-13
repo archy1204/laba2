@@ -17,6 +17,9 @@ public:
 	string gettext();
 
 	Senten(string text = "", Senten* pNext = nullptr, Senten* pPrev = nullptr);
+	Senten();
+	Senten(Senten& sent);
+	~Senten();
 private:
 	int data;
 	string text;

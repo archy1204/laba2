@@ -128,7 +128,7 @@ void menu()
 
 void men()
 {
-	cout << "Menu:\n(1)Aeroflot\n(2)Output text from file\n(3)Exit"<< endl;
+	cout << "Menu:\n(1)Price\n(2)Output text from file\n(3)Exit"<< endl;
 }
 
 void disp()

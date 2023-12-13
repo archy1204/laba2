@@ -11,6 +11,8 @@ public:
 	Price* pPrev;
 	Price(int price = int(), Price* pNext = nullptr, Price* pPrev = nullptr);
 	Price(string temp);
+	Price(Price& pr);
+	Price();
 
 	void setName(string name="Unnamed product");
 	void setPrice(int price = 0);
